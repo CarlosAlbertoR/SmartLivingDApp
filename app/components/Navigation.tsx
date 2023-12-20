@@ -1,13 +1,22 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import { IoMdMenu , IoMdMoon } from "react-icons/io";
+import { MdSunny } from "react-icons/md";
 
 const Navigation = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
-  const toggleNavbar = () => {
+  const toggleNavbar = () => 
     setNavbarOpen(!navbarOpen);
-  };
+
+    const handleDropdownToggle = () => 
+      setDropdownOpen(!dropdownOpen);
+    
+  
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -20,7 +29,64 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="flex w-full items-center justify-end px-4 lg:px-0">
+    <div className="flex w-full items-center justify-end px-4">
+     <div>
+      <button
+        onClick={toggleNavbar}
+        className={`absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden ${navbarOpen ? 'navbarTogglerActive' : ''}`}
+        id="navbarToggler"
+      >
+        {navbarOpen?<FaTimes />:<IoMdMenu />}
+      </button>
+
+ <nav className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-4 px-6 shadow dark:bg-black lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0 lg:shadow-none dark:lg:bg-transparent ${!navbarOpen?'hidden':''}`}>
+  <ul class="blcok lg:flex">
+      <li>
+          <Link
+            href="#home"
+            className="scroll-menu flex py-2 text-lg font-semibold text-primary hover:text-primary dark:text-white dark:hover:text-white lg:ml-7 lg:inline-flex lg:py-5 xl:ml-10 2xl:ml-12"
+          >
+            Inicio
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="#support"
+            className="scroll-menu flex py-2 text-lg font-semibold text-body-color-2 hover:text-primary dark:text-body-color dark:hover:text-white lg:ml-7 lg:inline-flex lg:py-5 xl:ml-10 2xl:ml-12"
+          >
+            Soporte
+          </Link>
+        </li>
+  </ul>
+ </nav>
+ </div>
+
+ <div className="flex justify-end pr-16 lg:pr-0 xl:pl-12 2xl:pl-20">
+        <div className="mr-4">
+          <label
+            htmlFor="darkToggler"
+            className="flex h-11 w-20 cursor-pointer items-center justify-center rounded-full bg-light-bg dark:bg-[#1E2763]"
+          >
+            <input
+              type="checkbox"
+              name="darkToggler"
+              id="darkToggler"
+              checked={darkMode}
+              onChange={toggleDarkMode}
+              className="sr-only"
+              aria-label="darkToggler"
+            />
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white dark:bg-transparent dark:text-body-color">
+              <MdSunny />
+            </span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-body-color-2 dark:bg-primary dark:text-white">
+              <IoMdMoon />
+            </span>
+          </label>
+        </div>
+      </div>
+
+      
       <ul className="flex space-x-4">
         <li>
           <Link
@@ -40,45 +106,8 @@ const Navigation = () => {
         </li>
       </ul>
 
-      <div className="flex justify-end pr-16 lg:pr-0 xl:pl-12 2xl:pl-20">
-        <div className="mr-4">
-          <label
-            htmlFor="darkToggler"
-            className="flex h-11 w-20 cursor-pointer items-center justify-center rounded-full bg-light-bg dark:bg-[#1E2763]"
-          >
-            <input
-              type="checkbox"
-              name="darkToggler"
-              id="darkToggler"
-              checked={darkMode}
-              onChange={toggleDarkMode}
-              className="sr-only"
-              aria-label="darkToggler"
-            />
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white dark:bg-transparent dark:text-body-color">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                className="fill-current"
-              >
-                <path d="M4.50663 3.2267L3.30663 2.03337L2.36663 2.97337L3.55996 4.1667L4.50663 3.2267ZM2.66663 7.00003H0.666626V8.33337H2.66663V7.00003ZM8.66663 0.366699H7.33329V2.33337H8.66663V0.366699ZM13.6333 2.97337L12.6933 2.03337L11.5 3.2267L12.44 4.1667L13.6333 2.97337ZM11.4933 12.1067L12.6866 13.3067L13.6266 12.3667L12.4266 11.1734L11.4933 12.1067ZM13.3333 7.00003V8.33337H15.3333V7.00003H13.3333ZM7.99996 3.6667C5.79329 3.6667 3.99996 5.46003 3.99996 7.6667C3.99996 9.87337 5.79329 11.6667 7.99996 11.6667C10.2066 11.6667 12 9.87337 12 7.6667C12 5.46003 10.2066 3.6667 7.99996 3.6667ZM7.33329 14.9667H8.66663V13H7.33329V14.9667ZM2.36663 12.36L3.30663 13.3L4.49996 12.1L3.55996 11.16L2.36663 12.36Z" />
-              </svg>
-            </span>
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-body-color-2 dark:bg-primary dark:text-white">
-              <svg
-                width="13"
-                height="15"
-                viewBox="0 0 13 15"
-                className="fill-current"
-              >
-                <path d="M10.6111 12.855C11.591 12.1394 12.3151 11.1979 12.7723 10.1623C10.4824 10.4065 8.1342 9.46314 6.67948 7.47109C5.22476 5.47905 5.04093 2.95516 5.97054 0.848179C4.84491 0.968503 3.72768 1.37162 2.74781 2.08719C-0.224105 4.25747 -0.874706 8.43084 1.29558 11.4028C3.46586 14.3747 7.63923 15.0253 10.6111 12.855Z" />
-              </svg>
-            </span>
-          </label>
-        </div>
-      </div>
-    </nav>
+
+    </div>
   );
 };
 
