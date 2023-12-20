@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { IoMdMenu, IoMdMoon } from "react-icons/io";
 import { MdSunny } from "react-icons/md";
+import { Button } from ".";
 
 const Navigation = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -85,26 +86,9 @@ const Navigation = () => {
             </span>
           </label>
         </div>
-      </div>
 
-      <ul className="flex space-x-4">
-        <li>
-          <Link
-            href="#home"
-            className="text-lg font-semibold text-body-color-2 hover:text-primary dark:text-white dark:hover:text-white"
-          >
-            Inicio
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="#support"
-            className="text-lg font-semibold text-body-color-2 hover:text-primary dark:text-white dark:hover:text-white"
-          >
-            Soporte
-          </Link>
-        </li>
-      </ul>
+        <Button label="Iniciar sesión" type="secondary" className="hidden sm:flex"/>
+      </div>
     </div>
   );
 };
