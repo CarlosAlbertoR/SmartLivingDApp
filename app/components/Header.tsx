@@ -5,20 +5,11 @@ import Navigation from "./Navigation";
 
 interface HeaderProps {
   scrolledFromTop: boolean;
-  // navbarOpen, toggleNavbar
 }
 
 export const Header = ({ scrolledFromTop }: HeaderProps) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setNavbarOpen(!navbarOpen);
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
 
   return (
     <header
@@ -69,4 +60,4 @@ export const Header = ({ scrolledFromTop }: HeaderProps) => {
       </div>
     </header>
   );
-}
+};
