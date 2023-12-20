@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaBitcoin } from "react-icons/fa";
-import { Button } from ".";
+import { Button } from "..";
 
 export const HeroSection = () => {
   return (

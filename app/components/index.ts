@@ -1,4 +1,4 @@
 export * from "./Button";
 export * from "./Header";
-export * from "./HeroSection";
+export * from "./landing/HeroSection";
 export * from "./Navigation";

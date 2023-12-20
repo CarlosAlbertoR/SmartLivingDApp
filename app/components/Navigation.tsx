@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
@@ -87,7 +86,11 @@ const Navigation = () => {
           </label>
         </div>
 
-        <Button label="Iniciar sesión" type="secondary" className="hidden sm:flex"/>
+        <Button
+          label="Iniciar sesión"
+          type="secondary"
+          className="hidden sm:flex"
+        />
       </div>
     </div>
   );
