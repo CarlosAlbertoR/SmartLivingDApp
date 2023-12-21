@@ -1,7 +1,7 @@
+import { Button } from "@components/ui";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 import { FaBitcoin } from "react-icons/fa";
-import { Button } from "..";
 
 export const HeroSection = () => {
   return (
@@ -61,7 +61,10 @@ export const HeroSection = () => {
           </div>
 
           <Link href="/signup">
-            <Button label="Explora la Revolución SmartLiving" />
+            <Button
+              className="!w-fit"
+              label="Explora la Revolución SmartLiving"
+            />
           </Link>
         </div>
       </div>

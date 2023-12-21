@@ -1,4 +1,4 @@
-'use client'; 
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 
 export const Header = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolledFromTop, setScrolledFromTop] = useState(false);
 
   useEffect(() => {

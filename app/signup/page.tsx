@@ -1,23 +1,14 @@
-"use client";
-
-import { Button, Header } from "@/app/components";
-import { signupWithEmailAndPassword } from "@/app/lib/login/actions";
-import { Metadata } from "next";
+import { Button, Header } from "@components/ui";
+import { SignupForm } from "@components/Forms";
 import Image from "next/image";
-import { useFormState } from "react-dom";
+import { Metadata } from "next";
 import { FcGoogle } from "react-icons/fc";
 
-// export const metadata: Metadata = {
-//     title: 'Registro',
-// };
+export const metadata: Metadata = {
+  title: "Registro",
+};
 
 export default function Signup() {
-  const initialState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(
-    signupWithEmailAndPassword,
-    initialState
-  );
-
   return (
     <div className="bg-white dark:bg-black">
       <Header />
@@ -31,25 +22,27 @@ export default function Signup() {
                 data-wow-delay="0s"
               >
                 <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                  Create your account
+                  Crea tu cuenta
                 </h3>
                 <p className="mb-11 text-center text-base font-medium text-body-color-2 dark:text-body-color">
-                  It's totally super easy
+                  Es increíblemente sencillo
                 </p>
                 <Button
                   icon={FcGoogle}
                   className="mb-6"
-                  label="Sign up with Google"
+                  label="Registrarse con Google"
                   type="secondary"
                 />
 
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color bg-opacity-50 sm:block"></span>
                   <p className="w-full px-5 text-center text-base font-medium text-body-color-2 dark:text-body-color">
-                    Or, register with your email
+                    O con tu correo electrónico
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color bg-opacity-50 sm:block"></span>
                 </div>
+
+                <SignupForm />
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
-import { Header, HeroSection } from "./components";
+import { HeroSection } from "@components/landing";
+import { Header } from "@components/ui";
 
 export default function Home() {
   return (
