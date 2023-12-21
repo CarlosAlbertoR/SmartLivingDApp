@@ -1,15 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 
-interface HeaderProps {
-  scrolledFromTop: boolean;
-}
+export const Header = () => {
+  const [scrolledFromTop, setScrolledFromTop] = useState(false);
 
-export const Header = ({ scrolledFromTop }: HeaderProps) => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset >= 50;
+      setScrolledFromTop(scrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header
