@@ -42,17 +42,11 @@ export const SignupForm = () => {
           label={
             <span>
               Al crear una cuenta, aceptas los{" "}
-              <a
-                href="javascript:void(0)"
-                className="text-primary hover:underline"
-              >
+              <a href="#" className="text-primary hover:underline">
                 Términos y Condiciones
               </a>{" "}
               y nuestra{" "}
-              <a
-                href="javascript:void(0)"
-                className="text-primary hover:underline"
-              >
+              <a href="#" className="text-primary hover:underline">
                 Política de Privacidad
               </a>
             </span>
