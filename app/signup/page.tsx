@@ -1,25 +1,28 @@
-'use client';
+"use client";
 
 import { Button, Header } from "@/app/components";
-import { signupWithEmailAndPassword } from '@/app/lib/login/actions';
-import { Metadata } from 'next';
+import { signupWithEmailAndPassword } from "@/app/lib/login/actions";
+import { Metadata } from "next";
 import Image from "next/image";
-import { useFormState } from 'react-dom';
+import { useFormState } from "react-dom";
 import { FcGoogle } from "react-icons/fc";
 
 // export const metadata: Metadata = {
 //     title: 'Registro',
 // };
-  
-export default function Signup  () {
+
+export default function Signup() {
   const initialState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(signupWithEmailAndPassword, initialState);
+  const [state, dispatch] = useFormState(
+    signupWithEmailAndPassword,
+    initialState
+  );
 
   return (
     <div className="bg-white dark:bg-black">
-       <Header  />
+      <Header />
 
-       <div className="relative z-10 pt-48 pb-28">
+      <div className="relative z-10 pt-48 pb-28">
         <div className="container">
           <div className="mx-[-16px] flex flex-wrap">
             <div className="w-full px-4">
@@ -33,20 +36,19 @@ export default function Signup  () {
                 <p className="mb-11 text-center text-base font-medium text-body-color-2 dark:text-body-color">
                   It's totally super easy
                 </p>
-                <Button icon={FcGoogle} className="mb-6" label="Sign up with Google" type="secondary" />
+                <Button
+                  icon={FcGoogle}
+                  className="mb-6"
+                  label="Sign up with Google"
+                  type="secondary"
+                />
 
                 <div className="mb-8 flex items-center justify-center">
-                  <span
-                    className="hidden h-[1px] w-full max-w-[60px] bg-body-color bg-opacity-50 sm:block"
-                  ></span>
-                  <p
-                    className="w-full px-5 text-center text-base font-medium text-body-color-2 dark:text-body-color"
-                  >
+                  <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color bg-opacity-50 sm:block"></span>
+                  <p className="w-full px-5 text-center text-base font-medium text-body-color-2 dark:text-body-color">
                     Or, register with your email
                   </p>
-                  <span
-                    className="hidden h-[1px] w-full max-w-[60px] bg-body-color bg-opacity-50 sm:block"
-                  ></span>
+                  <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color bg-opacity-50 sm:block"></span>
                 </div>
               </div>
             </div>
@@ -61,22 +63,22 @@ export default function Signup  () {
           }}
         ></div>
 
-<Image
-        src="/shapes/hero-shape-1.svg"
-        width={450}
-        height={450}
-        className="absolute left-0 top-0 -z-10"
-        alt="Shape 1"
-      />
+        <Image
+          src="/shapes/hero-shape-1.svg"
+          width={450}
+          height={450}
+          className="absolute left-0 top-0 -z-10"
+          alt="Shape 1"
+        />
 
-      <Image
-        src="/shapes/hero-shape-2.svg"
-        width={820}
-        height={820}
-        className="absolute right-0 top-0 -z-10"
-        alt="Shape 2"
-      />
-       </div>
+        <Image
+          src="/shapes/hero-shape-2.svg"
+          width={820}
+          height={820}
+          className="absolute right-0 top-0 -z-10"
+          alt="Shape 2"
+        />
+      </div>
     </div>
   );
-};
+}

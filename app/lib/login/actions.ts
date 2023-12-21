@@ -1,5 +1,3 @@
-'use server';
+"use server";
 
-export async function signupWithEmailAndPassword() {
-
-}
+export async function signupWithEmailAndPassword() {}
