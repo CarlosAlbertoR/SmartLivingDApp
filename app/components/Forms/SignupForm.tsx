@@ -10,14 +10,14 @@ import { useFormState } from "react-dom";
 export const SignupForm = () => {
   const [userTerms, setUserTerms] = useState(false);
   const initialState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(
-    signupWithEmailAndPassword,
-    initialState
-  );
+  // const [state, dispatch] = useFormState(
+  //   signupWithEmailAndPassword,
+  //   initialState
+  // );
 
   return (
     <>
-      <form action={dispatch}>
+      <form action={() => {}}>
         <InputField
           label="Nombre Completo"
           name="name"
