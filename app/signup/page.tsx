@@ -58,8 +58,8 @@ export default function Signup() {
 
         <Image
           src="/shapes/hero-shape-1.svg"
-          width={450}
-          height={450}
+          width={411}
+          height={276}
           className="absolute left-0 top-0 -z-10"
           alt="Shape 1"
         />
@@ -67,7 +67,7 @@ export default function Signup() {
         <Image
           src="/shapes/hero-shape-2.svg"
           width={820}
-          height={820}
+          height={692}
           className="absolute right-0 top-0 -z-10"
           alt="Shape 2"
         />
