@@ -21,8 +21,10 @@
     ],
     "paths": {
       "@/*": ["./app"],
+      "@config/*": ["app/config/*"],
       "@components/*": ["app/components/*"],
       "@lib/*": ["app/lib/*"],
+      "@models/*": ["app/models/*"],
       "@schemas/*": ["app/schemas/*"]
     }
   },
