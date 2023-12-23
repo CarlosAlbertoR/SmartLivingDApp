@@ -1,4 +1,4 @@
-import { ADAPTER_EVENTS } from "@web3auth/base";
+import { ADAPTER_EVENTS ,WALLET_ADAPTERS} from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 import { Web3AuthNoModal } from "@web3auth/no-modal";
@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 
 // Define una variable global para almacenar la instancia de Web3Auth
 let web3authInstance: Web3AuthNoModal | null;
+let provider=null; 
 
 export const createWeb3Auth = async () => {
   try {
@@ -62,7 +63,9 @@ export const createWeb3Auth = async () => {
 
     subscribeAuthEvents(web3auth);
 
+    
     await web3auth.init();
+    provider=web3auth.provider;
 
     // Asigna la instancia a la variable global
     web3authInstance = web3auth;
@@ -91,4 +94,46 @@ const subscribeAuthEvents = (web3auth: Web3AuthNoModal) => {
   web3auth.on(ADAPTER_EVENTS.ERRORED, (error) => {
     console.error("Error", error);
   });
+};
+
+export const signupWithGoogle = async () => {
+  try {
+    if (!web3authInstance) {
+      await createWeb3Auth();
+    }
+
+    const web3authProvider = await web3authInstance?.connectTo(
+      WALLET_ADAPTERS.OPENLOGIN,
+      {
+        loginProvider: "google",
+      }
+    );
+
+    if (web3authProvider) {
+      provider = web3authProvider;
+    }
+  } catch (error) {
+    console.error("Error during Google signup:", error);
+  }
+};
+
+
+export const getUserInfo = async () => {
+  if (!web3authInstance) {
+    console.error("web3auth not initialized yet");
+    return;
+  }
+  const user = await web3authInstance.getUserInfo();
+  console.log('user',user);
+  return user; 
+};
+
+export const logout = async () => {
+  if (!web3authInstance) {
+    console.error("web3auth not initialized yet");
+    return;
+  }
+
+  await web3authInstance.logout();
+  web3authInstance = null;
 };
