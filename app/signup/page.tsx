@@ -1,5 +1,5 @@
 import { Button, Header } from "@components/ui";
-import { SignupForm } from "@components/Forms";
+import { GoogleLogin, SignupForm } from "@components/Forms";
 import Image from "next/image";
 import { Metadata } from "next";
 import { FcGoogle } from "react-icons/fc";
@@ -13,39 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Signup() {
-  const [web3Auth, setWeb3Auth] = useState<Web3AuthNoModal>();
-
-  useEffect(() => {
-    const initializeWeb3Auth = async () => {
-      try {
-        const web3AuthManager = await createWeb3Auth();
-        setWeb3Auth(web3AuthManager);
-      } catch (error) {
-        console.error("Error initializing Web3Auth:", error);
-      }
-    };
-
-    initializeWeb3Auth();
-  }, []);
-
-  const signupWithGoogle = async () => {
-    try {
-      if (!web3Auth) {
-        const web3AuthManager = await createWeb3Auth();
-        setWeb3Auth(web3AuthManager);
-      }
-
-      const web3authProvider = await web3Auth?.connectTo(
-        WALLET_ADAPTERS.OPENLOGIN,
-        {
-          loginProvider: "google",
-        }
-      );
-    } catch (error) {
-      console.error("Error during Google signup:", error);
-    }
-  };
-
   return (
     <div className="bg-white dark:bg-black">
       <Header />
@@ -64,13 +31,8 @@ export default async function Signup() {
                 <p className="mb-11 text-center text-base font-medium text-body-color-2 dark:text-body-color">
                   Es increíblemente sencillo
                 </p>
-                <Button
-                  icon={FcGoogle}
-                  className="mb-6"
-                  label="Registrarse con Google"
-                  type="secondary"
-                  onClick={signupWithGoogle}
-                />
+
+                <GoogleLogin />
 
                 <div className="mb-8 flex items-center justify-center">
                   <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color bg-opacity-50 sm:block"></span>
