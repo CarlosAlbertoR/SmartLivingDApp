@@ -2,6 +2,7 @@
 
 import { Checkbox, InputField } from "@components/inputs";
 import { Button } from "@components/ui";
+import { Web3AuthManager } from "@config/web3auth";
 import { signupWithEmailAndPassword } from "@lib/login/actions";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,6 +11,7 @@ import { useFormState } from "react-dom";
 export const SignupForm = () => {
   const [userTerms, setUserTerms] = useState(false);
   const initialState = { message: null, errors: {} };
+
   // const [state, dispatch] = useFormState(
   //   signupWithEmailAndPassword,
   //   initialState

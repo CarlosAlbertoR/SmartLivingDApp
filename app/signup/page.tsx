@@ -3,12 +3,49 @@ import { SignupForm } from "@components/Forms";
 import Image from "next/image";
 import { Metadata } from "next";
 import { FcGoogle } from "react-icons/fc";
+import { WALLET_ADAPTERS } from "@web3auth/base";
+import { createWeb3Auth } from "@config/web3auth";
+import { useEffect, useState } from "react";
+import { Web3AuthNoModal } from "@web3auth/no-modal";
 
 export const metadata: Metadata = {
   title: "Registro",
 };
 
-export default function Signup() {
+export default async function Signup() {
+  const [web3Auth, setWeb3Auth] = useState<Web3AuthNoModal>();
+
+  useEffect(() => {
+    const initializeWeb3Auth = async () => {
+      try {
+        const web3AuthManager = await createWeb3Auth();
+        setWeb3Auth(web3AuthManager);
+      } catch (error) {
+        console.error("Error initializing Web3Auth:", error);
+      }
+    };
+
+    initializeWeb3Auth();
+  }, []);
+
+  const signupWithGoogle = async () => {
+    try {
+      if (!web3Auth) {
+        const web3AuthManager = await createWeb3Auth();
+        setWeb3Auth(web3AuthManager);
+      }
+
+      const web3authProvider = await web3Auth?.connectTo(
+        WALLET_ADAPTERS.OPENLOGIN,
+        {
+          loginProvider: "google",
+        }
+      );
+    } catch (error) {
+      console.error("Error during Google signup:", error);
+    }
+  };
+
   return (
     <div className="bg-white dark:bg-black">
       <Header />
@@ -32,6 +69,7 @@ export default function Signup() {
                   className="mb-6"
                   label="Registrarse con Google"
                   type="secondary"
+                  onClick={signupWithGoogle}
                 />
 
                 <div className="mb-8 flex items-center justify-center">
