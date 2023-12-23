@@ -20,6 +20,9 @@ dependencies:
   '@web3auth/openlogin-adapter':
     specifier: ^7.2.1
     version: 7.2.1(@babel/runtime@7.23.6)(@solana/web3.js@1.87.6)
+  '@web3auth/torus-evm-adapter':
+    specifier: ^7.2.1
+    version: 7.2.1(@babel/runtime@7.23.6)
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -963,6 +966,26 @@ packages:
       - utf-8-validate
     dev: false
 
+  /@toruslabs/torus-embed@4.1.1(@babel/runtime@7.23.6):
+    resolution: {integrity: sha512-VwW+zV6yKukXAdc4c9LvL5sEhF1q02oiUYZ3QZvhDKINjxrxgkoneFcBf/B9LVmZG45NcsSqv88h++exAuTTaw==}
+    engines: {node: '>=18.x', npm: '>=9.x'}
+    peerDependencies:
+      '@babel/runtime': 7.x
+    dependencies:
+      '@babel/runtime': 7.23.6
+      '@metamask/rpc-errors': 6.1.0
+      '@toruslabs/http-helpers': 6.0.0(@babel/runtime@7.23.6)
+      '@toruslabs/openlogin-jrpc': 6.1.0(@babel/runtime@7.23.6)
+      fast-deep-equal: 3.1.3
+      lodash.merge: 4.6.2
+      loglevel: 1.8.1
+      pump: 3.0.0
+      readable-stream: 4.5.1
+    transitivePeerDependencies:
+      - '@sentry/types'
+      - supports-color
+    dev: false
+
   /@types/connect@3.4.38:
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
     dependencies:
@@ -1251,7 +1274,7 @@ packages:
     resolution: {integrity: sha512-N8cSr5dJ6C+6XuWRhBgYNbNuZMf5+/oVOKK8EzYIkqkRiaV1vhdOncZvpb/vDb/zZx2UkPmJvHMcAZ5FL6C3/w==}
     engines: {node: '>=18.x', npm: '>=9.x'}
     dependencies:
-      '@web3auth/base': 7.2.0(@babel/runtime@7.23.6)
+      '@web3auth/base': 7.2.1(@babel/runtime@7.23.6)
     transitivePeerDependencies:
       - '@babel/runtime'
       - '@sentry/types'
@@ -1270,7 +1293,7 @@ packages:
       '@metamask/rpc-errors': 6.1.0
       '@toruslabs/base-controllers': 4.11.0(@babel/runtime@7.23.6)
       '@toruslabs/openlogin-jrpc': 6.1.0(@babel/runtime@7.23.6)
-      '@web3auth/base': 7.2.0(@babel/runtime@7.23.6)
+      '@web3auth/base': 7.2.1(@babel/runtime@7.23.6)
       json-rpc-random-id: 1.0.1
     transitivePeerDependencies:
       - '@sentry/types'
@@ -1441,6 +1464,23 @@ packages:
       - '@sentry/types'
       - bufferutil
       - c-kzg
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@web3auth/torus-evm-adapter@7.2.1(@babel/runtime@7.23.6):
+    resolution: {integrity: sha512-vECRn1Fy0WN+9Nsluv4XvlPxlbYhHOQKNRjyg8gD8N0a9nH4jUbvfAAp+HIj5gr1VOFl88VIhm1NUjAuWAUDJg==}
+    engines: {node: '>=18.x', npm: '>=9.x'}
+    peerDependencies:
+      '@babel/runtime': ^7.x
+    dependencies:
+      '@babel/runtime': 7.23.6
+      '@toruslabs/torus-embed': 4.1.1(@babel/runtime@7.23.6)
+      '@web3auth/base': 7.2.1(@babel/runtime@7.23.6)
+      '@web3auth/base-evm-adapter': 7.2.1(@babel/runtime@7.23.6)
+    transitivePeerDependencies:
+      - '@sentry/types'
+      - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
@@ -2536,7 +2576,6 @@ packages:
 
   /fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
-    dev: true
 
   /fast-glob@3.3.2:
     resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}

@@ -36,6 +36,12 @@ export const GoogleLogin = () => {
           loginProvider: "google",
         }
       );
+
+
+      console.log('web3authProvider',web3authProvider);
+      
+
+
     } catch (error) {
       console.error("Error during Google signup:", error);
     }

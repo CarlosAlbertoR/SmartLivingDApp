@@ -1,5 +1,7 @@
 import { GoogleLogin, SignupForm } from "@components/Forms";
 import { Header } from "@components/ui";
+import { createWeb3Auth } from "@config/web3auth";
+import { ADAPTER_EVENTS } from "@web3auth/base";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -8,8 +10,34 @@ export const metadata: Metadata = {
 };
 
 export default async function Signup() {
+  const web3Auth =await createWeb3Auth();
+
+  // Verifica si el usuario está conectado y obtén su información
+const checkUserConnection = async () => {
+  try {
+    const web3auth = await createWeb3Auth();
+
+    // Verifica si está conectado
+    if (web3auth.isConnected()) {
+      // El usuario ya está conectado, puedes llamar a getUserInfo()
+      const user = await web3auth.getUserInfo();
+      console.log("Información del usuario:", user);
+    } else {
+      console.log("El usuario no está conectado.");
+    }
+  } catch (error) {
+    console.error("Error al verificar la conexión del usuario:", error);
+  }
+};
+
+// Llama a la función para verificar la conexión del usuario
+checkUserConnection();
+
+  // const user = await web3Auth.getUserInfo();
+  // console.log(user);
+
   return (
-    <div className="bg-white dark:bg-black">
+    <div className="bg-white dark:sbg-black">
       <Header />
 
       <div className="relative z-10 pt-48 pb-28">
