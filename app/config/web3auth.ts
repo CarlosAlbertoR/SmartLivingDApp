@@ -6,8 +6,9 @@ import { mumbaiChain } from "./chains";
 
 export const createWeb3Auth = async () => {
   try {
+    console.log("env", process.env);
     const web3auth = new Web3AuthNoModal({
-      clientId: process.env.WEB3_CLIENT_ID || "",
+      clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID || "",
       chainConfig: mumbaiChain,
       enableLogging: true,
       web3AuthNetwork: "sapphire_devnet",
@@ -21,7 +22,7 @@ export const createWeb3Auth = async () => {
 
     const openloginAdapter = new OpenloginAdapter({
       adapterSettings: {
-        clientId: process.env.WEB3_CLIENT_ID || "",
+        clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID || "",
         network: "sapphire_devnet",
         uxMode: "redirect",
       },
@@ -47,12 +48,3 @@ export const createWeb3Auth = async () => {
     throw error;
   }
 };
-
-// Uso de la función
-createWeb3Auth()
-  .then((web3auth) => {
-    // La inicialización fue exitosa, puedes realizar otras operaciones
-  })
-  .catch((error) => {
-    console.error("Error durante la inicialización:", error);
-  });

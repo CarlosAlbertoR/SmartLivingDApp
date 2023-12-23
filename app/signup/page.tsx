@@ -1,12 +1,7 @@
-import { Button, Header } from "@components/ui";
 import { GoogleLogin, SignupForm } from "@components/Forms";
-import Image from "next/image";
+import { Header } from "@components/ui";
 import { Metadata } from "next";
-import { FcGoogle } from "react-icons/fc";
-import { WALLET_ADAPTERS } from "@web3auth/base";
-import { createWeb3Auth } from "@config/web3auth";
-import { useEffect, useState } from "react";
-import { Web3AuthNoModal } from "@web3auth/no-modal";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Registro",

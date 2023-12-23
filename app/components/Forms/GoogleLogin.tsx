@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@components/ui";
 import { createWeb3Auth } from "@config/web3auth";
 import { WALLET_ADAPTERS } from "@web3auth/base";
