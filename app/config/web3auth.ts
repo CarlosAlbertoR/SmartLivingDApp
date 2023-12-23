@@ -8,7 +8,7 @@ import { mumbaiChain } from "./chains";
 import dotenv from "dotenv";
 
 // Define una variable global para almacenar la instancia de Web3Auth
-let web3authInstance;
+let web3authInstance: Web3AuthNoModal | null;
 
 export const createWeb3Auth = async () => {
   try {
@@ -54,7 +54,7 @@ export const createWeb3Auth = async () => {
       chainConfig: mumbaiChain,
     });
 
-  //  const metamaskAdapter = new MetamaskAdapter();
+    //  const metamaskAdapter = new MetamaskAdapter();
 
     web3auth.configureAdapter(openloginAdapter);
     web3auth.configureAdapter(torusAdapter);
@@ -74,8 +74,7 @@ export const createWeb3Auth = async () => {
   }
 };
 
-
-const subscribeAuthEvents = (web3auth) => {
+const subscribeAuthEvents = (web3auth: Web3AuthNoModal) => {
   web3auth.on(ADAPTER_EVENTS.CONNECTED, (data) => {
     console.log("Conectado al monedero", data);
     // web3auth.provider estará disponible aquí después de que el usuario se conecte
