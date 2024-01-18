@@ -1,4 +1,4 @@
 import { CustomChainConfig } from "@web3auth/base";
-import { mumbaiChain } from ".";
+import { mainnetChain, mumbaiChain } from ".";
 
-export const chains: CustomChainConfig[] = [mumbaiChain];
+export const chains: CustomChainConfig[] = [mainnetChain, mumbaiChain];

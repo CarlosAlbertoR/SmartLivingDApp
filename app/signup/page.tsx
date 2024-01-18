@@ -1,6 +1,6 @@
 import { GoogleLogin, SignupForm } from "@components/Forms";
 import { Header } from "@components/ui";
-import { createWeb3Auth,logout ,getUserInfo} from "@config/web3auth";
+import { createWeb3Auth, logout, getUserInfo } from "@config/web3auth";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -14,7 +14,7 @@ export default async function Signup() {
     try {
       const web3auth = await createWeb3Auth();
       await logout();
-console.log('isConected',web3auth.connected);
+      console.log("isConected", web3auth.connected);
 
       // Verifica si está conectado
       if (web3auth.connected) {
@@ -36,7 +36,7 @@ console.log('isConected',web3auth.connected);
   // console.log(user);
 
   return (
-    <div className="bg-white dark:sbg-black">
+    <div className="bg-white dark:bg-black">
       <Header />
 
       <div className="relative z-10 pt-48 pb-28">

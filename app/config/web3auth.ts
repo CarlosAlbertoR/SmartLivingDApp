@@ -1,4 +1,4 @@
-import { ADAPTER_EVENTS, WALLET_ADAPTERS } from "@web3auth/base";
+import { ADAPTER_EVENTS, IProvider, WALLET_ADAPTERS } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 import { Web3AuthNoModal } from "@web3auth/no-modal";
@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 
 // Define una variable global para almacenar la instancia de Web3Auth
 let web3authInstance: Web3AuthNoModal | null;
-let provider = null;
+let provider: IProvider | null = null;
 
 export const createWeb3Auth = async () => {
   try {
@@ -20,46 +20,74 @@ export const createWeb3Auth = async () => {
 
     // Crea la instancia de Web3AuthNoModal
     const web3auth = new Web3AuthNoModal({
-      clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID || "",
+      clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID ?? "",
       chainConfig: mumbaiChain,
       enableLogging: true,
       web3AuthNetwork: "sapphire_devnet",
     });
 
     const privateKeyProvider = new EthereumPrivateKeyProvider({
-      config: {
-        chainConfig: mumbaiChain,
-      },
+      config: { chainConfig: mumbaiChain },
     });
 
     const openloginAdapter = new OpenloginAdapter({
       adapterSettings: {
-        clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID || "",
-        network: "sapphire_devnet",
-        uxMode: "redirect",
+        whiteLabel: {
+          appName: "Smart Living",
+          appUrl: "https://web3auth.io",
+          logoLight: "https://web3auth.io/images/web3auth-logo.svg",
+          logoDark: "https://web3auth.io/images/web3auth-logo---Dark.svg",
+          defaultLanguage: "en",
+          mode: "auto",
+          useLogoLoader: true,
+        },
+        mfaSettings: {
+          deviceShareFactor: {
+            enable: true,
+            priority: 1,
+            mandatory: true,
+          },
+          backUpShareFactor: {
+            enable: true,
+            priority: 2,
+            mandatory: false,
+          },
+          socialBackupFactor: {
+            enable: true,
+            priority: 3,
+            mandatory: false,
+          },
+          passwordFactor: {
+            enable: true,
+            priority: 4,
+            mandatory: false,
+          },
+        },
       },
+      loginSettings: { mfaLevel: "optional" },
       privateKeyProvider,
     });
 
-    const torusAdapter = new TorusWalletAdapter({
-      adapterSettings: {
-        clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID || "",
-        buttonPosition: "bottom-left",
-      },
-      loginSettings: {
-        verifier: "google",
-      },
-      initParams: {
-        buildEnv: "testing",
-      },
-      chainConfig: mumbaiChain,
-    });
-
-    //  const metamaskAdapter = new MetamaskAdapter();
-
     web3auth.configureAdapter(openloginAdapter);
-    web3auth.configureAdapter(torusAdapter);
-    //web3auth.configureAdapter(metamaskAdapter);
+
+    // const torusAdapter = new TorusWalletAdapter({
+    //   adapterSettings: {
+    //     clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID || "",
+    //     buttonPosition: "bottom-left",
+    //   },
+    //   loginSettings: {
+    //     verifier: "google",
+    //   },
+    //   initParams: {
+    //     buildEnv: "testing",
+    //   },
+    //   chainConfig: mumbaiChain,
+    // });
+
+    const metamaskAdapter = new MetamaskAdapter({ chainConfig: mumbaiChain });
+
+    //web3auth.configureAdapter(torusAdapter);
+    web3auth.configureAdapter(metamaskAdapter);
 
     subscribeAuthEvents(web3auth);
 
@@ -117,11 +145,14 @@ export const signupWithGoogle = async () => {
 };
 
 export const getUserInfo = async () => {
-  if (!web3authInstance) await createWeb3Auth();
-
-  const user = await web3authInstance?.getUserInfo();
-  console.log("user", user);
-  return user;
+  try {
+    await createWeb3Auth();
+    const user = await web3authInstance?.getUserInfo();
+    console.log("user", user);
+    return user;
+  } catch (error) {
+    console.error("Error al obtener información del usuario:", error);
+  }
 };
 
 export const logout = async () => {

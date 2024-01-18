@@ -1,1 +1,2 @@
-export * from "./mumbaiChain";
+export * from "./mainnet";
+export * from "./mumbai";
