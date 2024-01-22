@@ -89,7 +89,6 @@ export const createWeb3Auth = async () => {
 const subscribeAuthEvents = (web3auth: Web3AuthNoModal) => {
   web3auth.on(ADAPTER_EVENTS.CONNECTED, (data) => {
     console.log("Conectado al monedero", data);
-    // web3auth.provider estará disponible aquí después de que el usuario se conecte
   });
 
   web3auth.on(ADAPTER_EVENTS.CONNECTING, () => {
@@ -107,20 +106,14 @@ const subscribeAuthEvents = (web3auth: Web3AuthNoModal) => {
 
 export const signupWithGoogle = async () => {
   try {
-    if (!web3authInstance) {
-      await createWeb3Auth();
-    }
+    if (!web3authInstance) await createWeb3Auth();
 
     const web3authProvider = await web3authInstance?.connectTo(
       WALLET_ADAPTERS.OPENLOGIN,
-      {
-        loginProvider: "google",
-      }
+      { loginProvider: "google" }
     );
 
-    if (web3authProvider) {
-      provider = web3authProvider;
-    }
+    if (web3authProvider) provider = web3authProvider;
   } catch (error) {
     console.error("Error during Google signup:", error);
   }

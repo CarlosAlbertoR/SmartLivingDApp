@@ -5,7 +5,7 @@ import { FaBitcoin } from "react-icons/fa";
 
 export const HeroSection = () => {
   return (
-    <section id="home" className="relative z-10 pt-48 pb-28">
+    <section id="home" className="pt-48 pb-28">
       <div className="container flex flex-wrap">
         <div className="w-full px-4 mx-auto max-w-[720px] text-center">
           <h1 className="mb-4 text-3xl font-bold leading-tight text-black dark:text-white md:text-[45px]">
@@ -68,30 +68,6 @@ export const HeroSection = () => {
           </Link>
         </div>
       </div>
-
-      <div
-        className="absolute top-0 left-0 -z-10 h-full w-full opacity-20"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, #3e7dff 0%, rgba(62, 125, 255, 0) 100%)",
-        }}
-      ></div>
-
-      <Image
-        src="/shapes/hero-shape-1.svg"
-        width={411}
-        height={276}
-        className="absolute left-0 top-0 -z-10"
-        alt="Shape 1"
-      />
-
-      <Image
-        src="/shapes/hero-shape-2.svg"
-        width={820}
-        height={692}
-        className="absolute right-0 top-0 -z-10"
-        alt="Shape 2"
-      />
     </section>
   );
 };

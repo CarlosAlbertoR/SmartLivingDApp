@@ -1,6 +1,5 @@
 "use client";
 
-import { createWeb3Auth, getUserInfo } from "@config/web3auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,26 +7,6 @@ import Navigation from "./Navigation";
 
 export const Header = () => {
   const [scrolledFromTop, setScrolledFromTop] = useState(false);
-  // const dispatch = useAppDispatch();
-
-  const handleAuthentication = async () => {
-    try {
-      const web3Auth = await createWeb3Auth();
-
-      if (web3Auth.connected) {
-        const userInfo = await getUserInfo();
-        console.log("user", userInfo);
-        // dispatch(setUser(userInfo));
-      }
-    } catch (error) {
-      console.error("Error during authentication:", error);
-    }
-  };
-
-  useEffect(() => {
-    handleAuthentication();
-  }, []);
-  // const user = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

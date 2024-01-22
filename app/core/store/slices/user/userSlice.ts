@@ -1,14 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { UserInfo } from "@web3auth/base";
+import { IUser } from "@models/user";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {} as UserInfo;
+interface UserState {
+  user: IUser | null;
+}
+
+const initialState: UserState = {
+  user: null,
+};
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser: (state, action) => {
-      return action.payload;
+    setUser: (state, action: PayloadAction<IUser | null>) => {
+      state.user = action.payload;
     },
   },
 });

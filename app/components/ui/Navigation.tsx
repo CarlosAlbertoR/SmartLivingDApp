@@ -1,19 +1,19 @@
 "use client";
 
+import { useAppSelector } from "@store/hooks";
 import Link from "next/link";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { IoMdMenu, IoMdMoon } from "react-icons/io";
 import { MdSunny } from "react-icons/md";
-import { Button } from ".";
+import { Button, UserMenu } from ".";
 
 const Navigation = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const currentUser = useAppSelector((state) => state.user).user;
 
   const toggleNavbar = () => setNavbarOpen(!navbarOpen);
-  const handleDropdownToggle = () => setDropdownOpen(!dropdownOpen);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -88,11 +88,15 @@ const Navigation = () => {
           </label>
         </div>
 
-        <Button
-          label="Iniciar sesión"
-          type="secondary"
-          className="hidden sm:flex"
-        />
+        {currentUser ? (
+          <UserMenu className="hidden sm:flex" currentUser={currentUser} />
+        ) : (
+          <Button
+            label="Iniciar sesión"
+            type="secondary"
+            className="hidden sm:flex"
+          />
+        )}
       </div>
     </div>
   );

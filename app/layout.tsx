@@ -2,6 +2,7 @@ import GlobalLayout from "@components/GlobalLayout";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+
 import "./globals.css";
 
 export interface RootLayoutProps {
@@ -18,10 +19,10 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="es">
-      <body className={`${inter.className} antialiased bg-white dark:bg-black`}>
+      <body className={`${inter.className} antialiased`}>
         <GlobalLayout>{children}</GlobalLayout>
       </body>
     </html>
