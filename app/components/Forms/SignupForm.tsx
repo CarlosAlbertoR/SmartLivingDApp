@@ -59,7 +59,7 @@ export const SignupForm = () => {
       </form>
 
       <p className="text-center text-base font-medium text-body-color-2 dark:text-body-color mt-6">
-        ¿Ya tienes una cuenta?{" "}
+        ¿Ya tienes una cuenta?
         <Link className="text-primary hover:underline" href="/signin">
           Inicia sesión
         </Link>

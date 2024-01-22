@@ -1,8 +1,12 @@
+import GlobalLayout from "@components/GlobalLayout";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ReactNode } from "react";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+export interface RootLayoutProps {
+  children: ReactNode;
+}
 
 export const metadata: Metadata = {
   title: {
@@ -12,14 +16,14 @@ export const metadata: Metadata = {
   description: "Smart Living Management",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const inter = Inter({ subsets: ["latin"] });
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="es">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased bg-white dark:bg-black`}>
+        <GlobalLayout>{children}</GlobalLayout>
+      </body>
     </html>
   );
 }

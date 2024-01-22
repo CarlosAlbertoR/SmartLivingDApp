@@ -22,10 +22,12 @@
     "paths": {
       "@/*": ["./app"],
       "@config/*": ["app/config/*"],
+      "@core/*": ["app/core/*"],
       "@components/*": ["app/components/*"],
       "@lib/*": ["app/lib/*"],
       "@models/*": ["app/models/*"],
-      "@schemas/*": ["app/schemas/*"]
+      "@schemas/*": ["app/schemas/*"],
+      "@store/*": ["app/core/store/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

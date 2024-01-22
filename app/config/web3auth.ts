@@ -3,9 +3,7 @@ import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 import { Web3AuthNoModal } from "@web3auth/no-modal";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
-import { TorusWalletAdapter } from "@web3auth/torus-evm-adapter";
 import { mumbaiChain } from "./chains";
-import dotenv from "dotenv";
 
 // Define una variable global para almacenar la instancia de Web3Auth
 let web3authInstance: Web3AuthNoModal | null;
@@ -70,23 +68,7 @@ export const createWeb3Auth = async () => {
 
     web3auth.configureAdapter(openloginAdapter);
 
-    // const torusAdapter = new TorusWalletAdapter({
-    //   adapterSettings: {
-    //     clientId: process.env.NEXT_PUBLIC_WEB_THREE_CLIENT_ID || "",
-    //     buttonPosition: "bottom-left",
-    //   },
-    //   loginSettings: {
-    //     verifier: "google",
-    //   },
-    //   initParams: {
-    //     buildEnv: "testing",
-    //   },
-    //   chainConfig: mumbaiChain,
-    // });
-
     const metamaskAdapter = new MetamaskAdapter({ chainConfig: mumbaiChain });
-
-    //web3auth.configureAdapter(torusAdapter);
     web3auth.configureAdapter(metamaskAdapter);
 
     subscribeAuthEvents(web3auth);
@@ -148,7 +130,6 @@ export const getUserInfo = async () => {
   try {
     await createWeb3Auth();
     const user = await web3authInstance?.getUserInfo();
-    console.log("user", user);
     return user;
   } catch (error) {
     console.error("Error al obtener información del usuario:", error);
