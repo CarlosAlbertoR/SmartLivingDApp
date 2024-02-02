@@ -1,6 +1,7 @@
-import { z } from "zod";
+import { SignupFormData } from "@core/models";
+import { z, ZodType } from "zod";
 
-export const RegisterFormSchema = z.object({
+export const RegisterFormSchema: ZodType<SignupFormData> = z.object({
   name: z.string().min(4, {
     message: "El nombre del cliente debe tener al menos 4 caracteres.",
   }),
@@ -18,7 +19,7 @@ export const RegisterFormSchema = z.object({
         "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.",
     }
   ),
-  terms: z.boolean().refine((value) => value, {
+  termsAndConditions: z.boolean().refine((value) => value === true, {
     message: "Por favor, acepta los términos y condiciones para continuar.",
   }),
 });

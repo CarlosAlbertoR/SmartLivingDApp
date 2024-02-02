@@ -1,4 +1,4 @@
-import { IUser } from "@models/user";
+import { IUser } from "@core/models/user";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface UserState {

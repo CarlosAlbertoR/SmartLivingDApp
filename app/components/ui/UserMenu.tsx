@@ -2,7 +2,7 @@
 
 import { logout } from "@config/web3auth";
 import { useAppDispatch } from "@core/store/hooks";
-import { IUser } from "@models/user";
+import { IUser } from "@core/models/user";
 import { setUser } from "@store/slices/user";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

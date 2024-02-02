@@ -1,6 +1,6 @@
 "use server";
 
-import { RegisterFormSchema } from "@schemas/register-form.schema";
+import { RegisterFormSchema } from "@core/schemas/register-form.schema";
 
 export type StateUserRegister = {
   errors?: {
