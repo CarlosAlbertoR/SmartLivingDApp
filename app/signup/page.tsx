@@ -1,38 +1,12 @@
 import { GoogleLogin, SignupForm } from "@components/Forms";
-import { createWeb3Auth, logout, getUserInfo } from "@config/web3auth";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Registro",
 };
 
 export default async function Signup() {
-  // Verifica si el usuario está conectado y obtén su información
-  const checkUserConnection = async () => {
-    try {
-      const web3auth = await createWeb3Auth();
-      await logout();
-      console.log("isConected", web3auth.connected);
-
-      // Verifica si está conectado
-      if (web3auth.connected) {
-        // El usuario ya está conectado, puedes llamar a getUserInfo()
-        const user = await web3auth.getUserInfo();
-        console.log("Información del usuario:", user);
-      } else {
-        console.log("El usuario no está conectado.");
-      }
-    } catch (error) {
-      console.error("Error al verificar la conexión del usuario:", error);
-    }
-  };
-
-  // Llama a la función para verificar la conexión del usuario
-  // checkUserConnection();
-
-  // const user = await web3Auth.getUserInfo();
-  // console.log(user);
-
   return (
     <div className="container pt-48 pb-28">
       <div className="mx-[-16px] flex flex-wrap">
@@ -59,6 +33,16 @@ export default async function Signup() {
             </div>
 
             <SignupForm />
+
+            <p className="text-center text-base font-medium text-body-color-2 dark:text-body-color mt-6">
+              ¿Ya tienes una cuenta?
+              <Link
+                className="ml-1 text-primary hover:underline"
+                href="/signin"
+              >
+                Inicia sesión
+              </Link>
+            </p>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 "use client";
 
 import { logout } from "@config/web3auth";
-import { useAppDispatch } from "@core/store/hooks";
 import { IUser } from "@core/models/user";
-import { setUser } from "@store/slices/user";
+import { useAppDispatch } from "@core/store";
+import { setUser } from "@store/slices";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useState } from "react";
@@ -29,7 +29,6 @@ export const UserMenu = ({ className, currentUser }: UserMenuProps) => {
       console.error("Error during Logout:", error);
     }
   };
-  console.log(currentUser);
 
   return (
     <div className={`${className} relative`}>
@@ -40,7 +39,7 @@ export const UserMenu = ({ className, currentUser }: UserMenuProps) => {
         <AiOutlineMenu />
         <div className="hidden md:block">
           <Image
-            src={currentUser?.profileImage || "/images/placeholder.jpg"}
+            src={currentUser?.profileImage ?? "/images/placeholder.jpg"}
             className="rounded-full"
             height="30"
             width="30"

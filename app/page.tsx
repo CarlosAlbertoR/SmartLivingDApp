@@ -1,6 +1,8 @@
 import GlobalLayout from "@components/GlobalLayout";
-import { RootLayoutProps } from "./layout";
+import { ReactNode } from "react";
 
-export default async function Home({ children }: Readonly<RootLayoutProps>) {
+export default async function Home({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return <GlobalLayout>{children}</GlobalLayout>;
 }

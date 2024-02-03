@@ -1,15 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { userSlice } from "./slices/user/userSlice";
+import { persistStore } from "redux-persist";
 
-const persistConfig = { key: "SML", storage };
-const isClient = typeof window !== "undefined";
-
-const persistedUserSlice = persistReducer(persistConfig, userSlice.reducer);
+import rootReducer from "./rootReducer";
 
 export const store = configureStore({
-  reducer: { user: persistedUserSlice },
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+      immutableCheck: false,
+    }),
   devTools: process.env.NODE_ENV !== "production",
 });
 

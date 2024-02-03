@@ -1,13 +1,10 @@
+import "./globals.css";
+
 import GlobalLayout from "@components/GlobalLayout";
+import { StoreProvider } from "@core/store/provider";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-
-import "./globals.css";
-
-export interface RootLayoutProps {
-  children: ReactNode;
-}
 
 export const metadata: Metadata = {
   title: {
@@ -19,11 +16,15 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="es">
       <body className={`${inter.className} antialiased`}>
-        <GlobalLayout>{children}</GlobalLayout>
+        <StoreProvider>
+          <GlobalLayout>{children}</GlobalLayout>
+        </StoreProvider>
       </body>
     </html>
   );

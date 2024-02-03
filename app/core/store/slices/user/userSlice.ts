@@ -1,5 +1,5 @@
 import { IUser } from "@core/models/user";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   user: IUser | null;
@@ -14,6 +14,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<IUser | null>) => {
+      console.log("payload", action.payload);
+
       state.user = action.payload;
     },
   },
