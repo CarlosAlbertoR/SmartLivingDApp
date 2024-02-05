@@ -10,3 +10,9 @@ export type SignupFormData = {
   password: string;
   termsAndConditions: boolean;
 };
+
+export type SigninFormData = {
+  email: string;
+  password: string;
+  keepSignedIn: boolean;
+};

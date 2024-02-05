@@ -1,15 +1,29 @@
 import { auth, googleProvider } from "@config/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 
 import { conectFirebaseUser, destroyWeb3auth, getWeb3AuthInstance } from ".";
 
 export const loginWithGoogle = async () => {
   try {
-    const data = await signInWithPopup(auth, googleProvider);
-    const idToken = await data.user.getIdToken(true);
-    await conectFirebaseUser(idToken);
-    const user = await getUserInfo();
-    return user;
+    const userData = signInWithPopup(auth, googleProvider).then(
+      async (data) => {
+        console.log("data", data);
+        const idToken = await data.user.getIdToken(true);
+        console.log("idToken", idToken);
+        const user = conectFirebaseUser(idToken);
+        return user;
+      }
+    );
+
+    // await conectFirebaseUser(idToken);
+    // const user = await getUserInfo();
+    // console.log("user", user);
+
+    return userData;
   } catch (error) {
     console.error("Error during Google signup:", error);
   }
@@ -24,6 +38,26 @@ export const signupWithEmailAndPassword = async (
     const idToken = await data.user.getIdToken(true);
     await conectFirebaseUser(idToken);
     const user = await getUserInfo();
+    return user;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const loginWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  try {
+    const data = await signInWithEmailAndPassword(auth, email, password);
+    console.log("data", data);
+
+    const idToken = await data.user.getIdToken(true);
+    await conectFirebaseUser(idToken);
+    const user = await getUserInfo();
+    console.log("user", user);
+
     return user;
   } catch (error) {
     console.error(error);

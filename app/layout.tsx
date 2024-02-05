@@ -1,7 +1,9 @@
 import "./globals.css";
+import "./animate.css";
 
 import GlobalLayout from "@components/GlobalLayout";
-import { StoreProvider } from "@core/store/provider";
+import { Web3authProvider } from "@config/web3auth";
+import { StoreProvider } from "@store/provider";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
@@ -23,7 +25,9 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${inter.className} antialiased`}>
         <StoreProvider>
-          <GlobalLayout>{children}</GlobalLayout>
+          <Web3authProvider>
+            <GlobalLayout>{children}</GlobalLayout>
+          </Web3authProvider>
         </StoreProvider>
       </body>
     </html>

@@ -1,4 +1,3 @@
-
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 import { Web3AuthNoModal } from "@web3auth/no-modal";
@@ -59,18 +58,3 @@ export const getWeb3AuthInstance = async () => {
 export const destroyWeb3auth = () => {
   web3authInstance = null;
 };
-
-// export const signupWithGoogle = async () => {
-//   try {
-//     if (!web3authInstance) await createWeb3Auth();
-
-//     const web3authProvider = await web3authInstance?.connectTo(
-//       WALLET_ADAPTERS.OPENLOGIN,
-//       { loginProvider: "google" }
-//     );
-
-//     if (web3authProvider) provider = web3authProvider;
-//   } catch (error) {
-//     console.error("Error during Google signup:", error);
-//   }
-// };

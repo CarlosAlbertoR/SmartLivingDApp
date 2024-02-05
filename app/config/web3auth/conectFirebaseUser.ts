@@ -1,6 +1,6 @@
 import { WALLET_ADAPTERS } from "@web3auth/base";
 
-import { getWeb3AuthInstance } from ".";
+import { getUserInfo, getWeb3AuthInstance } from ".";
 
 export const conectFirebaseUser = async (idToken: string) => {
   try {
@@ -13,10 +13,13 @@ export const conectFirebaseUser = async (idToken: string) => {
         extraLoginOptions: {
           id_token: idToken,
           verifierIdField: "email",
+          domain: "http://localhost:3000",
         },
       }
     );
     if (web3authProvider) web3authInstance.provider = web3authProvider;
+    const user = await getUserInfo();
+    return user;
   } catch (error) {
     console.error("Error during Signup:", error);
   }

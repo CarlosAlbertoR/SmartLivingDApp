@@ -2,6 +2,7 @@
 
 import { useAppSelector } from "@store/hooks";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { IoMdMenu, IoMdMoon } from "react-icons/io";
@@ -10,6 +11,7 @@ import { MdSunny } from "react-icons/md";
 import { Button, UserMenu } from ".";
 
 const Navigation = () => {
+  const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
   const currentUser = useAppSelector((state) => state.user).user;
@@ -96,6 +98,7 @@ const Navigation = () => {
             label="Iniciar sesión"
             type="secondary"
             className="hidden sm:flex"
+            onClick={() => router.push("/signin")}
           />
         )}
       </div>

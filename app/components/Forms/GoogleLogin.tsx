@@ -2,19 +2,31 @@
 
 import { Button } from "@components/ui";
 import { loginWithGoogle } from "@config/web3auth";
-import { useAppDispatch } from "@core/store/hooks";
-import { setUser } from "@store/slices/user/userSlice";
+import { useAppDispatch } from "@store/hooks";
+import { setUser } from "@store/slices";
 import { parseUserInfo } from "@utils/parseUserInfo";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 
-export const GoogleLogin = () => {
+interface GoogleLoginProps {
+  type: "login" | "register";
+}
+
+export const GoogleLogin = ({ type }: GoogleLoginProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  const getLabel = () => {
+    return type === "login"
+      ? "Iniciar sesión con Google"
+      : "Registrarse con Google";
+  };
 
   const handleSignupWithGoogle = async () => {
     try {
       const user = await loginWithGoogle();
+      console.log("user", user);
+
       if (user) {
         const parsedUser = parseUserInfo(user);
         dispatch(setUser(parsedUser));
@@ -29,7 +41,7 @@ export const GoogleLogin = () => {
     <Button
       icon={FcGoogle}
       className="mb-6"
-      label="Registrarse con Google"
+      label={getLabel()}
       type="secondary"
       onClick={handleSignupWithGoogle}
     />

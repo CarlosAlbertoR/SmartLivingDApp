@@ -20,6 +20,12 @@ export const UserMenu = ({ className, currentUser }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => setIsOpen((value) => !value), []);
 
+  const defaultImage = "/images/placeholder.jpg";
+  const profileImage =
+    currentUser?.profileImage && currentUser.profileImage.length
+      ? currentUser.profileImage
+      : defaultImage;
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -39,7 +45,7 @@ export const UserMenu = ({ className, currentUser }: UserMenuProps) => {
         <AiOutlineMenu />
         <div className="hidden md:block">
           <Image
-            src={currentUser?.profileImage ?? "/images/placeholder.jpg"}
+            src={profileImage}
             className="rounded-full"
             height="30"
             width="30"

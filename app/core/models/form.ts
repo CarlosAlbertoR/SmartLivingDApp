@@ -20,6 +20,7 @@ export interface ITextFieldProps {
 
 export type TValidFieldNames =
   | "email"
+  | "keepSignedIn"
   | "name"
   | "password"
   | "termsAndConditions";
